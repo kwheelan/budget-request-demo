@@ -18,6 +18,8 @@ function showSidebar() {
     const mainPanel = document.getElementById('main-panel');
     const header = document.querySelector('header');
 
+    // update values
+    updateTotals();
     sidebar.style.display = 'block'; // Show the sidebar
     
     // Calculate the remaining width for the main panel and header

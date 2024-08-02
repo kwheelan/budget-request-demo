@@ -1,6 +1,7 @@
 import FundLookupTable from '../../../models/fund_lookup_table.js';
 import CurrentFund from '../../../models/current_fund.js'
 import CurrentPage from '../../../models/current_page.js'
+import Table from '../table.js';
 
 function fillTable(data) {
     try {
@@ -48,10 +49,12 @@ async function loadFromStorage(){
     // if nothing in storage, return a zero
     if ( !data ) {
         return 0;
-    };
-    // otherwise, fill table in HTML and return success (1)
-    fillTable(await JSON.parse(data));
-    return 1;
+    } else {
+        // otherwise, fill table in HTML and return success (1)
+        Table.show();
+        fillTable(await JSON.parse(data));
+        return 1;
+    }
 }
 
 

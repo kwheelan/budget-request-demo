@@ -64,14 +64,14 @@ h6 {
   border-bottom: 1px solid #ddd;
 }
 
-.edit-icon {
+.edit-icon, .edit-supp {
   color: var(--spiritgreen);
   cursor: pointer;
   font-size: 16px; /* Adjust the size as needed */
   margin-left: 10px;
 }
 
-.edit-icon:hover {
+.edit-icon:hover .edit-supp:hover {
   color: var(--citygreen);
 }
 

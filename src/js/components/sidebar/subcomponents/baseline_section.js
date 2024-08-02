@@ -75,7 +75,7 @@ export const BaselineSection = {
             let fund = btn.closest('.fund-div').id.replace('fund_', '');
             let page = btn.closest('.sidebar-stat-line').classList[1];
     
-            btn.addEventListener('click', function(event) {
+            btn.addEventListener('click', function() {
                 CurrentFund.update(fund);
                 visitPage(page);
             });
@@ -96,7 +96,7 @@ export const BaselineSection = {
 
         if(this.genFund.getTotal() <= Baseline.target()){
             document.querySelector('#GF-total .stat').style.color = "green";
-            document.querySelector('#fund_100 sidebar-stat-line.fund-total .stat').style.color = "green";
+            document.querySelector('#fund_1000 .sidebar-stat-line:last-of-type .stat').style.color = "green";
         } else {
             document.querySelector('#GF-total .stat').style.color = "red";
             document.querySelector('#fund_1000 .sidebar-stat-line:last-of-type .stat').style.color = "red";

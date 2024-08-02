@@ -14,6 +14,7 @@ export class FundView extends View {
         this.subtitle = 'Baseline Budget Request';
         this.table = new FundTable();
         this.sidebar = false;
+        this.dataTable = false;
     }
 
     visit() {
@@ -39,8 +40,8 @@ class FundTable extends ViewTable {
 
     build(){
         // load in fund data
-        Table.Data.loadFunds();
         Table.show();
+        Table.Data.loadFunds();
         Table.Columns.assignClasses(this.columns);
         Table.adjustWidth('30%');
 

@@ -17,21 +17,21 @@ function adjustTableWidth(width_pct){
     table.style.width = width_pct;
 }
 
-function clearTable(){
-    const table = document.getElementById('main-table');
-    table.querySelector('thead').innerHTML = '';
-    table.querySelector('tbody').innerHTML = '';
-}
-
 function showTable(){
+    const tableContainer = document.querySelector('.table-container');
+    tableContainer.innerHTML = Table.html;
     const table = document.getElementById('main-table');
     table.style.display = 'table';
 }
 
 function hideTable(){
-    const table = document.getElementById('main-table');
-    table.style.display = 'none';
+
+    // delete table object from table container
+    const tableContainer = document.querySelector('.table-container');
+    tableContainer.innerHTML = '';
     Buttons.AddRow.hide();
+    // delete search bar
+    document.querySelector('#search-bar-container').innerHTML = '';
 }
 
 function saveTableData() {
@@ -53,6 +53,11 @@ function saveTableData() {
 }
 
 const Table = {
+    html : `
+        <table class="table table-bordered mt-3 display" id="main-table">
+            <thead class="thead-dark"></thead>
+            <tbody></tbody>
+        </table>`,
     Buttons : Buttons,
     Cell : Cell,
     Columns : Columns,
@@ -63,7 +68,8 @@ const Table = {
     adjustWidth : function(width_pct){
         adjustTableWidth(width_pct)
     },
-    clear : clearTable,
+    // TODO: delete
+    clear : hideTable,
     hide : hideTable,
     show : showTable,
     save : saveTableData

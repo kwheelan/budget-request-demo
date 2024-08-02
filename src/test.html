@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel-like Table with Drop-Down Filters</title>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Datatables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <!-- Datatables JS -->
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Excel-like Table with Drop-Down Filters</h1>
+
+        <!-- Filter Dropdowns -->
+        <div id="filter-container">
+            <label for="filter-position">Filter by Position:</label>
+            <select id="filter-position" class="filter-dropdown">
+                <option value="">All</option>
+            </select>
+            <label for="filter-office">Filter by Office:</label>
+            <select id="filter-office" class="filter-dropdown">
+                <option value="">All</option>
+            </select>
+        </div>
+
+        <!-- HTML Table -->
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>$320,800</td>
+                </tr>
+                <tr>
+                    <td>Garrett Winters</td>
+                    <td>Accountant</td>
+                    <td>Tokyo</td>
+                    <td>63</td>
+                    <td>2011/07/25</td>
+                    <td>$170,750</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            var table = $('#example').DataTable();
+
+            // Populate filter dropdowns with unique values
+            function populateFilter(columnIndex, dropdownId) {
+                var columnData = table.column(columnIndex).data().unique().sort();
+                columnData.each(function(d) {
+                    $(dropdownId).append('<option value="' + d + '">' + d + '</option>');
+                });
+            }
+
+            populateFilter(1, '#filter-position'); // Populate Position filter
+            populateFilter(2, '#filter-office');  // Populate Office filter
+
+            // Filter functionality
+            $('.filter-dropdown').on('change', function() {
+                let position = $('#filter-position').val();
+                let office = $('#filter-office').val();
+
+                table.columns(1).search(position);
+                table.columns(2).search(office);
+
+                table.draw();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -64,7 +64,7 @@ function initializeConfirmButton(updateCallback){
 }
 
 const Edit = {
-    html: '<button class="btn btn-edit">Edit</button>',
+    html: '<button class="btn btn-edit">Edit row</button>',
     hide: hideButton('btn-edit'),
     show: showButton('btn-edit'),
     init : function(actionOnClick, updateCallback){

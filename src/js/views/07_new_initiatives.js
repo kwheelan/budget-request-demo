@@ -23,9 +23,9 @@ export class InitiativesView extends View {
     }
 
     visit() {
-        super.visit();
         // remove fund selection
         localStorage.setItem("fund", '');
+        super.visit();
     }
 
 }
